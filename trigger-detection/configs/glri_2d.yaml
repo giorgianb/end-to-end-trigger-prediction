@@ -1,0 +1,58 @@
+output_dir: train_results/biatt-blri/
+wandb:
+  project_name: physics-trigger
+  run_name: biatt-blri
+  tags: ["biatt", "blri", "loopy", "layernorm", "batchnorm", "prelu"]
+
+lri: 
+  sigma: 1
+  beta: 0.00761802068354479
+
+epochs: 2
+finetune_epochs: 2
+optimizer:
+  finetune_factor: 0.00000004051572215926
+  type: Adam
+  learning_rate: 0.00043604688569912655
+  beta_1: 0.2593561521694199
+  beta_2: 0.999
+  eps: 0.00004345407469234627
+  weight_decay: 0.00000013981963061503
+  learning_rate_decay_rate: 0.838833585680445
+
+model_mod: 1
+model:
+  num_features: 32
+  layers_spec: [[64, 8], [64, 8], [64, 8], [64, 8]]
+  ln: True
+  bn: False
+  num_classes: 2
+  aggregator_activation: softmax
+  recalculate_hits_mean: True
+  self_split: False
+  hidden_activation: PReLU
+  use_cholesky: False
+
+data:
+        name: gt-trkvec-masked
+        trigger_input_dir: # Trigger input data ehre
+        nontrigger_input_dir: # Non trigger input data here
+        rescale_by_percentile: 14
+
+        n_train: 5000 #00
+        n_valid: 1000 #00
+        n_test: 1000 #00
+        batch_size: 512
+
+        add_geo_features: True
+        use_radius: True
+        use_predicted_pz: True
+        use_energy: False
+        use_momentum: False
+        use_center: True
+        use_parallel_momentum: False
+
+        use_physics_pred: False
+
+        n_workers: 16
+        load_complete_graph: False

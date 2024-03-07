@@ -1,0 +1,37 @@
+output_dir: train_results/settrans/
+tensorboard_output_dir: runs/settrans
+
+name_on_wandb: biatt-ecml-garnet-nomask
+epochs: 50
+
+optimizer:
+  type: Adam
+  momentum: 0.9
+  learning_rate: 0.0001
+  weight_decay: 0.0001
+
+model:
+  dim_input: 15
+  num_outputs: 1
+  dim_output: 2
+  num_inds: 16
+  dim_hidden: 64
+  num_heads: 4
+  ln: True
+
+
+data:
+        name: pred_trkvec_nomask
+        input_dir: # trigger input dir here
+        input_dir2: # non trigger input directory here
+        n_train1: 500000
+        n_valid1: 200000
+        n_test1: 200000
+        n_train2: 500000
+        n_valid2: 200000
+        n_test2: 200000
+        add_geo_features: True
+        use_radius: False
+        batch_size: 32
+        n_workers: 4
+        load_complete_graph: False

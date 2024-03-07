@@ -1,0 +1,34 @@
+output_dir: train_results/garnet/
+tensorboard_output_dir: runs/garnet/
+
+name_on_wandb: garnet-nomask
+
+
+epochs: 50
+optimizer:
+  type: Adam
+  momentum: 0.9
+  learning_rate: 0.0001
+  weight_decay: 0.0001
+
+model:
+  num_features: 15 # raw track features
+  layers_spec: [[256, 16], [256, 16], [256, 16]]
+  num_classes: 2
+  potential: garnet
+
+data:
+        name: pred_trkvec_nomask
+        input_dir: # Trigger here
+        input_dir2: # non trigger here
+        n_train1: 500000
+        n_valid1: 200000
+        n_test1: 200000
+        n_train2: 500000
+        n_valid2: 200000
+        n_test2: 200000
+        add_geo_features: True
+        use_radius: True
+        batch_size: 32
+        n_workers: 4
+        load_complete_graph: False

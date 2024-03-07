@@ -1,0 +1,45 @@
+output_dir: tracking_results/train/
+
+model_name_on_wandb: tracking-gnn
+
+trainer:
+    name: gnn_sparse
+
+data:
+    name: hit_graph
+    input_dir:  # trigger input data
+    input_dir2: # non trigge rinput data
+    n_train: 50000 #0
+    n_valid: 10000 #0
+    real_weight: 1
+    batch_size: 128
+    n_workers: 16
+    n_folders: 2
+    phi_slope_max: 0.012193355583173944
+    z0_max: 14.220353082111805
+    n_mix: 1
+    use_intt: False
+    load_full_event: False
+
+
+model:
+    name: agnn
+    input_dim: 5
+    hidden_dim: 8
+    hidden_activation: Tanh
+    n_graph_iters: 1
+    layer_norm: false
+    loss_func: binary_cross_entropy_with_logits
+
+optimizer:
+    name: Adam
+    learning_rate: 0.0001
+    weight_decay: 1.e-4
+    lr_decay_schedule:
+        - {start_epoch: 60, end_epoch: 128, factor: 0.1}
+    beta_1: 0.9
+    beta_2: 0.999
+    eps: 1.0e-8
+
+training:
+    n_total_epochs: 128

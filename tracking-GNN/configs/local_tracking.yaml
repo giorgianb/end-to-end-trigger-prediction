@@ -1,0 +1,36 @@
+output_dir: tracking_result/tracking
+
+model_name_on_wandb: tracking-gnn-7layer-alltrack-fix
+
+trainer:
+    name: gnn_sparse
+
+data:
+    name: hitgraphs_sparse_new
+    input_dir: # trigger input dir
+    input_dir2: # non trigger input dir
+    n_train: 100000
+    n_valid: 50000
+    real_weight: 1
+    batch_size: 32
+    n_workers: 8
+    n_folders: 2
+
+model:
+    name: agnn
+    input_dim: 5
+    hidden_dim: 8
+    hidden_activation: Tanh
+    n_graph_iters: 8
+    layer_norm: True
+    loss_func: binary_cross_entropy
+
+optimizer:
+    name: Adam
+    learning_rate: 0.0001
+    weight_decay: 1.e-4
+    lr_decay_schedule:
+        - {start_epoch: 60, end_epoch: 128, factor: 0.1}
+
+training:
+    n_total_epochs: 128

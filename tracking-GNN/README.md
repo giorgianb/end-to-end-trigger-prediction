@@ -34,7 +34,7 @@ python inference-pytorch.py
 to perform inference. This script uses trained models to predict tracks. Modify the `output_dirs` and `model_results_folder` in `inference-pytorch.py` in order to specify the model with which to perform inference and where to store the inference results.
 
 ## Track Building
-Use `build_tracks.py` to compile inference results into a comprehensive tracks dataset, ready for training for the trigger predictio. Modify the `input_dir` variable to one of the output directories from `inference-pytorch.py`, and modify the `output_dir` variable to where you want the track dataset saved.
+Use `build_tracks.py` to compile inference results into a comprehensive tracks dataset, ready for training the trigger prediction model. Modify the `input_dir` variable to one of the output directories from `inference-pytorch.py`, and modify the `output_dir` variable to where you want the track dataset saved.
 
 ## Customization
 Modify configuration files in `./configs/` to tailor the pipeline to specific datasets or experimental setups.
